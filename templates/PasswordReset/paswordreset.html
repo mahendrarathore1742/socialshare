@@ -1,0 +1,24 @@
+{% extends 'importable.html' %}
+ {% load static %}
+ {% load crispy_forms_tags %}
+ {% block body %}
+<div style="padding-top: 30px;" class="m-5">
+    <div class="card" style="width: 50em;  margin: 0 auto; float: none; ">
+        <div class="card-body">
+            <form method="post" style="" class="m-5">
+                {% csrf_token %}
+                <div class="form-group ">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="m-5">
+                <center>
+                    <button class="btn btn-primary" type="submit" style="border:1px solid black;border-radius: 50px;background-color: #fafafa;color: black;">
+                        Submit
+                    </button>
+                </center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

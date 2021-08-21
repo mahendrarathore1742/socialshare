@@ -1,0 +1,57 @@
+{% extends 'importable.html' %}
+{% load static %} 
+
+{% block head %}
+
+ {% endblock head %}
+{% block body %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-6 ms-auto mb-2">
+            <img class=" animated" src="{% static '/images/one.png'  %}">
+            </img>
+        </div>
+        <div class="col-6 ">
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>
+                    {{ message }}
+                </strong>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button">
+                </button>
+            </div>
+            {% endfor %}
+            <center>
+                <h3>
+                    Login
+                </h3>
+            </center>
+            <form class="m-5" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    Email
+                </div>
+                <input aria-describedby="email" class="form-control logindata" id="email" name="email" placeholder="Enter email" required="" type="email"/>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">
+                        Password
+                    </label>
+                    <input class="form-control logindata" id="exampleInputPassword1" name="password" placeholder="Password" required="" type="password">
+                    </input>
+                </div>
+                <input name="next" type="hidden" value="{{request.GET.next}}"/>
+                <center>
+                    <div class="mt-4">
+                        <button class=" btn btn-primary" style="border:1px solid black;border-radius: 50px;background-color: #fafafa;color: black;" type="submit">
+                            Login
+                        </button>
+                    </div>
+                </center>
+                <a href="/accounts/password/reset/">
+                    Password Reset
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

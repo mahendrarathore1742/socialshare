@@ -1,0 +1,59 @@
+{% extends 'importable.html' %}
+{% load static %}
+ {% load widget_tweaks %}
+{% block body %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-6">
+           <img class=" animated" src="{% static '/images/three.png'  %}">
+            </img>
+
+        </div>
+        <div class="col-6 ms-auto mb-2 ">
+            <form method="post" class="m-5">
+                {% csrf_token %}
+                        
+        {% for message in messages %}
+                <p style="display: flex;">
+                    {{ message }}
+                </p>
+                {% endfor %}
+
+         {% for field in form.visible_fields %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+
+          {% if form.is_bound %}
+          {% if field.errors %}
+          {% render_field field class="form-control is-invalid" %}
+          {% for error in field.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+          {% else %}
+          {% render_field field class="form-control is-valid" %}
+          {% endif %}
+          {% else %}
+          {% render_field field class="form-control" %}
+          {% endif %}
+
+          {% if field.help_text %}
+                    <small class="form-text text-muted">
+                        {{ field.help_text }}
+                    </small>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <div class="pt-3">
+                    <center>
+                        <button class="btn btn-primary" style="border:1px solid black;border-radius: 50px;background-color: #fafafa;color: black;" type="submit">
+                            Sign up
+                        </button>
+                    </center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

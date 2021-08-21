@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      
+        {% block head %} {% endblock head  %}
+     
+        <meta charset="utf-8">
+
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+                <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+                    <script src="http://code.jquery.com/jquery-1.10.2.js">
+                    </script>
+                    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js">
+                    </script>
+                    {% load static %}
+                    <link href="{% static 'Style.css' %}" rel="stylesheet" type="text/css">
+
+                    <link href="{% static 'tagsinput.css' %}" rel="stylesheet" type="text/css">
+                        <title>
+                            {% block title  %} {%  endblock title  %}
+                        </title>
+                        <style>
+                      .navbarmenu:hover{
+                        background-color: #fafafa;
+                        border-radius: 20px;
+                              }
+                      .header {
+                        display: flex;
+                        justify-content: space-between
+                          
+                        }
+                        .playerOne {
+                          float: right;
+                        }
+                        .playerTwo {
+                          float: left;
+                        }
+                        .btn{
+                          border: none;
+                          outline: none;
+                        }
+                       </style>
+                    </link>
+                </link>
+            </meta>
+        </meta>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+
+    body{
+        max-width: 100%;
+        overflow-x: hidden;
+
+    }
+
+.profile-cover {
+    position: relative;
+    z-index: 0;
+}
+
+.panel {
+    margin-bottom: 30px;
+    color: #696969;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+}
+
+.profile-cover__action {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    padding: 120px 30px 10px 153px;
+    border-radius: 5px 5px 0 0;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: end;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: url(https://bootdey.com/img/Content/bg1.jpg) no-repeat;
+    background-size: cover;
+}
+
+.profile-cover__action > .btn {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-cover__img {
+    position: absolute;
+    top: 120px;
+    left: 30px;
+    text-align: center;
+    z-index: 1;
+}
+
+.profile-cover__img > img {
+    max-width: 120px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-cover__img > .h3 {
+    color: #393939;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.profile-cover__img > img + .h3 {
+    margin-top: 6px;
+}
+
+.profile-cover__info .nav {
+    margin-right: 28px;
+    padding: 15px 0 10px 170px;
+    color: #999;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    -ms-flex-pack: end;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.profile-cover__info .nav li {
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+.profile-cover__info .nav li:not(:first-child) {
+    margin-left: 30px;
+    padding-left: 30px;
+    border-left: 1px solid #eee;
+}
+
+.profile-cover__info .nav strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #e16123;
+    font-size: 34px;
+}
+
+@media (min-width: 481px) {
+    .profile-cover__action > .btn {
+        min-width: 125px;
+    }
+
+    .profile-cover__action > .btn > span {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-cover__info .nav {
+        display: block;
+        margin: 90px auto 0;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .profile-cover__info .nav li:not(:first-child) {
+        margin-top: 8px;
+        margin-left: 0;
+        padding-top: 18px;
+        padding-left: 0;
+        border-top: 1px solid #eee;
+        border-left-width: 0;
+    }
+}
+
+.panel {
+    margin-bottom: 30px;
+    color: #696969;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+}
+
+.panel-heading {
+    color: #393939;
+    padding: 10px 20px;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.panel-heading:after,
+.panel-heading:before {
+    content: " ";
+    display: table;
+}
+
+.panel-heading:after {
+    clear: both;
+}
+
+.panel-title {
+    float: left;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.panel-title select {
+    border-width: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+}
+
+.panel-title select option {
+    text-transform: capitalize;
+}
+
+.panel-title .select2 {
+    display: block;
+    min-width: 200px;
+}
+
+.panel-title .select2-selection {
+    height: auto;
+    padding: 0;
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.no-outlines .panel-title .select2-selection {
+    outline: 0;
+}
+
+.panel-title .select2-selection .select2-selection__rendered {
+    float: left;
+    margin-right: 8px;
+    padding: 0;
+    line-height: inherit;
+}
+
+.panel-title .select2-selection .select2-selection__arrow {
+    float: left;
+    display: block;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+    height: auto;
+}
+
+.panel-title .select2-selection .select2-selection__arrow:before {
+    content: "\f107";
+    font-family: "Font Awesome\ 5 Free";
+    font-weight: 700;
+}
+
+.panel-title .select2-container--open .select2-selection__arrow:before {
+    content: "\f106";
+}
+
+.panel-heading .dropdown {
+    float: right;
+}
+
+.panel-heading .dropdown .dropdown-toggle {
+    margin: -10px -20px;
+    padding: 10px 20px;
+    color: #999;
+    border-width: 0;
+    font-size: 14px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+</style>
+<style>
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fafafa;
+  width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light ms-auto " style="background: #C4E2FF;  box-shadow: 1px 1px black;">
+            <div class="container-fluid" style="margin-left: 50px; margin-right: 50px;">
+                <a class="navbar-brand" href="/">
+                    <h3>
+                        <i>
+                            Social Blog
+                        </i>
+                    </h3>
+                </a>
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon">
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item me-3">
+                            <a aria-current="page" class="nav-link navbarmenu" href="/">
+                                Home
+                            </a>
+                        </li>
+                        {%  if not user.is_authenticated %}
+                        <li class="nav-item me-3">
+                            <a aria-current="page" class="nav-link navbarmenu" href="/signin">
+                                Sign in
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item me-3">
+                            <a aria-current="page" class="nav-link navbarmenu" href="/about">
+                                About
+                            </a>
+                        </li>
+                        {%  if not user.is_authenticated %}
+                        <li class="nav-item me-3">
+                            <a aria-current="page" class="nav-link " href="/signup" style="background-color: black;color: white; border-radius:40px;">
+                                Get Started
+                            </a> 
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-3">
+                            <a aria-current="page" class="nav-link " href="/user/account/upload/" style="background-color: black;color: white; border-radius:40px;">
+                                write post
+                            </a>
+                        </li>
+                        <li class="nav-item" style="">
+                            <div class="dropdown">
+                                <img class="dropbtn" src="{{user.userprofile.Profileimage.url}}" style="position: relative;top: -4px;width: 32px;  height: 32px; border-radius: 32px;margin: 10px;">
+                                </img>
+                                 <div class="dropdown-content">
+                                <a href="/user/account/save/">My save</a>
+                                <a href="/user/account/like/">My Like</a>
+                                <a href="/user/account/following/">Following</a>
+                                <a href="/user/account/myprofile/">Setting</a>
+                                 <a href="/user/account/mypost/">My post</a>
+                                <a href="/user/account/logout/">Logout</a>
+                              </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block body %}  {% endblock body %}
+        <script crossorigin="anonymous" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
+        </script>
+        {% block script   %} {% endblock script %}
+    </body>
+
+
+    <footer class="p-1" style="background: black;color:white;">
+    <div class="row">
+        <div class="col-sm-4 ">
+            <div style="border: none;color: rgba(255, 255, 255, 0.7);">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: white;">
+                        Learn More
+                    </h5>
+                    <p class="card-text" style="color: rgba(255, 255, 255, 0.7);line-height: 20px;font-size: 14px;font-weight: 400;">
+                        SoicalBlog is an open platform where million readers come to find insightful and dynamic thinking. Here, expert and undiscovered voices alike dive into the heart of any topic and bring new ideas to the surface.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 ">
+            <div style="border: none;color: rgba(255, 255, 255, 0.7);">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: white;">
+                        Make Your Social Blog
+                    </h5>
+                    <p class="card-text" style="color: rgba(255, 255, 255, 0.7);line-height: 20px;font-size: 14px;font-weight: 400;">
+                        Follow the writers, publications, and topics that matter to you, and you’ll see them on your homepage and in your inbox.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 ">
+            <div style="border: none;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: white;">
+                        Write story on Social Blog
+                    </h5>
+                    <p class="card-text" style="color: rgba(255, 255, 255, 0.7);line-height: 20px;font-size: 14px;font-weight: 400;">
+                        If you have a story to tell, knowledge to share, or a perspective to offer — welcome home. It’s easy and free to post your thinking on any topic. Start a blog.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr style="color: white">
+        </hr>
+    </div>
+</footer>
+  <script src="{% static 'tagsinput.js' %}"></script>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'importable.html' %}
+{% load static %} 
+
+{% block head %}
+
+ {% endblock head %}
+
+{% block body %}
+
+	  <div class="container">
+  <div class="row">
+
+{% for i in alltagsdata %}
+
+  <div class="col-sm-4 p-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{i.Title}}</h5>
+        <p class="card-text">
+        	{{i.Artical|truncatewords:50 }} <a href="/post/{{ i.user }}/{{ i.slug }}"> <b>Read More...</b></a>
+        </p>
+        <p >Like {{i.like.count}}</p>
+        <a class="btn" href="/post/{{ i.user }}/{{ i.slug }}" style="border:1px solid black;border-radius: 50px;background-color: #fafafa">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+</div>
+	</div>
+
+
+{% endblock body %}

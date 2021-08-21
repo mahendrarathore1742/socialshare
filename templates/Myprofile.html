@@ -1,0 +1,98 @@
+{% extends "importable.html" %}
+ {% block body %}
+{% load crispy_forms_tags %}
+ {% load static %}
+ {% block head %}
+ {% endblock %}
+
+<div class='container p-5'>
+
+  <div class="card ">
+       {% for message in messages %}
+    <div class="alert alert-light alert-dismissible fade show" role="alert">
+    <strong>
+        {{ message }}
+    </strong>
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+        <span aria-hidden="true">
+            ×
+        </span>
+    </button>
+</div>
+
+{% endfor %}
+       <div class="card-body">
+     <center> <h5 class="card-title">{{user.username}}</h5></center> 
+       <form enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-8 mb-0">
+                        <img alt="Profileimage" src="{{user.userprofile.Profileimage.url}}" style="width: 150px;height: 150px; border-radius: 100%;padding: 20px;"/>
+                            <div class="file-input">
+                                <input accept="image/*" id="id_Profileimage" name="Profileimage" type="file"/>
+                                    <span class="button">
+                                        Choose
+                                    </span>
+                                    <span class="label" data-js-label="">
+                                        No file selected
+                                    </span>             
+                  </div></div>
+               <div class="form-group col-md-6 mb-0">
+    {{ form1.username|as_crispy_field }}
+</div>
+<div class="form-group col-md-6 mb-0">
+    {{ form1.email|as_crispy_field }}
+</div>
+<div class="form-group col-md-6 mb-0">
+    {{ form.FirstName|as_crispy_field }}
+</div>
+<div class="form-group col-md-6 mb-0">
+    {{ form.LastName|as_crispy_field }}
+</div>
+
+<div class="form-group col-md-6 mb-0">
+    {{ form.position|as_crispy_field }}
+</div>
+
+<div class="mr-2">
+{{ form.Aboutme|as_crispy_field }}
+</div>
+</div>
+<div class='container p-2'>
+<button class="btn btn-primary" type="submit">
+    Save
+</button>
+<a class="btn-primary btn" href="/user/account/logout/" type="button">
+    Log out
+</a>
+</div>
+</form>
+  </div>
+</div>
+</div>
+
+{% endblock %}  
+
+ 		{% block js %}
+<script>
+    var inputs = document.querySelectorAll('.file-input')
+
+ 			for (var i = 0, len = inputs.length; i < len; i++) {
+ 				customInput(inputs[i])
+ 			}
+
+ 			function customInput (el) {
+ 				const fileInput = el.querySelector('[type="file"]')
+ 				const label = el.querySelector('[data-js-label]')
+
+ 				fileInput.onchange =
+ 				fileInput.onmouseout = function () {
+ 					if (!fileInput.value) return
+
+ 						var value = fileInput.value.replace(/^.*[\\\/]/, '')
+ 					el.className += ' -chosen'
+ 					label.innerText = value
+ 				}
+ 			}
+</script>
+{% endblock %}
