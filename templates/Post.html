@@ -1,0 +1,384 @@
+{% extends 'importable.html' %}
+{% load hitcount_tags %}
+{% block body %} 
+ {% load hitcount_tags %} 
+<div class="container mt-5 ">
+    <div class="row " style="flex-wrap: wrap-reverse;">
+        <div align="center" class="col-md-3 ">
+            <div class="position-fixed a">
+                <div>
+                    <div>
+                       <a style="text-decoration: none;color: black;" href=" {% url 'userdata' usernamedata.username %}">    <h5>
+                                {{usernamedata.username}}
+                            </h5></a>
+                        </a>
+                        <div class="ko kp s">
+                            <p style="line-height: 15px;text-transform: uppercase;color: rgba(117, 117, 117, 1);font-size: 13px;font-family: sohne, 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 400;">
+                                <b>
+                                    Level Up Your Code
+                                </b>
+                            </p>
+                        </div>
+                        <div aria-describedby="collectionFollowPopover" aria-hidden="false" aria-labelledby="collectionFollowPopover" class="fl">
+                            <span>
+                                {%  if  user.is_authenticated %}
+                                 {% if Data and not request.user ==  usernamedata %}
+                                <a class="btn btn-primary" href="{% url 'follow' usernamedata.username %}" id="follow" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                    <i class="check">
+                                        ✓
+                                    </i>
+                                    Follow
+                                </a>
+                                {% elif request.user ==  usernamedata %}
+                                <a class="btn btn-primary " href="/user/account/myprofile/" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                    Edit
+                                </a>
+                                {% else %}
+                                <a class="btn btn-primary " href="{% url 'follow' usernamedata.username %}" id="follow" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                    Follow
+                                </a>
+                                {% endif %}
+
+                                 {% else %}
+                                 <a class="btn btn-primary " href="/user/account/login" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                    Login
+                                </a>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <hr>
+                        </hr>
+                        {%  if user.is_authenticated %}
+                            
+                        {% if user in queryset.like.all %}
+                        <a class="like_btn btn-primary" data-href="{{  queryset.get_api_like_url  }}" data-like="{{queryset.like.count}}" href="{{queryset.get_like_url}}" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                            {{queryset.like.count}} Like
+                        </a>
+                        {% else %}
+                        <a class="like_btn btn-primary" data-href="{{  queryset.get_api_like_url  }}" data-like="{{queryset.like.count}}" href="{{queryset.get_like_url}}" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                            {{queryset.like.count}} Like
+                        </a>
+                        {% endif %}
+
+
+                        {% if request.user in queryset.save_post.all %}
+                        <a class=" save_btn btn-primary" data-hrefs="{{  queryset.get_api_save_url }}" data-save="{{queryset.save_post.count}}" href="" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                            Unsaved
+                        </a>
+                        {% else %}
+                        <a class=" save_btn btn-primary" data-hrefs="{{  queryset.get_api_save_url }}" data-save="{{queryset.save_post.count}}" href="" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                            Save
+                        </a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div>
+                <div>
+                    <h1 style='font-family: fell, Georgia, Cambria, "Times New Roman", Times, serif;'>
+                        {{queryset.Title}}
+                    </h1>
+                </div>
+                <div>
+                    <div style="display: flex;font-family: 'inherit';">
+                        <img class="mb-2" src="{{usernamedata.userprofile.Profileimage.url}}" style="float:left;width: 45px;height: 45px;border-radius: 48px;margin: 0 12px 0 0;"/>
+                        <div style="display: flex;align-items: center;">
+                            <p class="me-2">
+                                <b>
+                                    {{queryset.user}}
+                                </b>
+                                
+                            </p>
+                            <p class="me-2" style="padding: 5px 10px;border-radius: 3px;line-height: 22px;background: rgba(242, 242, 242, 1);color: rgba(117, 117, 117, 1);text-decoration: none;font-size: 13px;font-family: sohne, 'Helvetica Neue', Helvetica, Arial, sans-serif;display: block;font-weight: 400;-webkit-tap-highlight-color: transparent;">
+                                Follower {{following_obj}}
+                            </p>
+                            
+                                <p>
+                                    {{queryset.date|date:"j F, Y"}} 
+
+                                <b>    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                    </svg>  {% get_hit_count for queryset %}</b>
+                                </p>
+                            </br>
+                            <i class="bi bi-eye"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img class="m-2" src="{{queryset.Images.url}}" style="width: 100%"/>
+                <div class="mb-2">
+                    <p style="font-family: charter, Georgia, Cambria, 'Times New Roman', Times, serif;letter-spacing:  -0.003em;line-height: 32px;margin-top: 2em;font-size: 21px;">
+                        {{queryset.Artical|safe}}
+                    </p>
+                </div>
+                <div class="tags">
+                    <ul>
+                        {% for mt in queryset.tags.all%}
+                        <li style="margin-bottom: 8px;margin-right: 8px;display: inline-block;list-style-type: none;">
+                            <a href="{% url 'detail_view' mt.slug %}" style="padding: 5px 10px;border-radius: 3px;line-height: 22px;background: rgba(242, 242, 242, 1);color: rgba(117, 117, 117, 1);text-decoration: none;font-size: 13px;font-family: sohne, 'Helvetica Neue', Helvetica, Arial, sans-serif;display: block;font-weight: 400;-webkit-tap-highlight-color: transparent;">
+                                {{mt}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="footertab mb-5">
+                    {%  if user.is_authenticated %}
+                            
+                        {% if user in queryset.like.all %}
+                    <a class="like_btn btn-primary" data-href="{{  queryset.get_api_like_url  }}" data-like="{{queryset.like.count}}" href="{{queryset.get_like_url}}" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                        {{queryset.like.count}} Like
+                    </a>
+                    {% else %}
+                    <a class="like_btn btn-primary" data-href="{{  queryset.get_api_like_url  }}" data-like="{{queryset.like.count}}" href="{{queryset.get_like_url}}" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                        {{queryset.like.count}} Like
+                    </a>
+                    {% endif %}
+
+                        {% if request.user in queryset.save_post.all %}
+                    <a class=" save_btn btn-primary" data-hrefs="{{  queryset.get_api_save_url }}" data-save="{{queryset.save_post.count}}" href="" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                        Unsaved
+                    </a>
+                </div>
+                {% else %}
+                <a class=" save_btn btn-primary" data-hrefs="{{  queryset.get_api_save_url }}" data-save="{{queryset.save_post.count}}" href="" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                    Save
+                </a>
+                {% endif %}
+                        {% else %}
+                <a class="btn btn-primary " href="/user/account/login" role="button" style="height: auto;margin: auto;border-radius: 30px;width: 95px">
+                    Login
+                </a>
+                {% endif %}
+                <hr>
+                </hr>
+                <div class="profle" style="display: flex;align-items: center;">
+                    <div>
+                        <img alt="Profile image" height="80" src="{{usernamedata.userprofile.Profileimage.url}}" style="border-radius: 50%;vertical-align: middle;display: block;" width="80">
+                        </img>
+                    </div>
+                    <div class="list ms-3" style="">
+                        <ui style="list-style-type: none;">
+                            <li>
+                                <p style="line-height: 15px;text-transform: uppercase;color: rgba(117, 117, 117, 1);font-size: 13px;font-family: sohne, 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 400;">
+                                    Written by
+                                </p>
+                            </li>
+                            <li>
+                                <div class="header">
+                                    <div class="playerOne">
+                                        <h6>
+                                          <a style="text-decoration: none;color: black;" href=" {% url 'userdata' usernamedata.username %}">   {{usernamedata.username}}</a>
+                                        </h6>
+                                    </div>
+                                    <div class="playerTwo">
+                                        {%  if  user.is_authenticated %}
+                                 {% if Data and not request.user ==  usernamedata %}
+                                        <a class="btn btn-primary" href="{% url 'follow' usernamedata.username %}" id="follow1" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                            <i class="check">
+                                                ✓
+                                            </i>
+                                            Follow
+                                        </a>
+                                        {% elif request.user ==  usernamedata %}
+                                        <a class="btn btn-primary " href="/user/account/myprofile/" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                            Edit
+                                        </a>
+                                        {% else %}
+                                        <a class="btn btn-primary " href="{% url 'follow' usernamedata.username %}" id="follow1" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                            Follow
+                                        </a>
+                                        {% endif %}
+
+                                 {% else %}
+                                        <a class="btn btn-primary " href="/user/account/login" role="button" style="padding: 4px 12px 6px;text-decoration: none;display: inline-block;border-style: solid;border-width: 1px;border-radius: 99em;background: rgba(26, 137, 23, 1);fill: rgba(255, 255, 255, 1);color: rgba(255, 255, 255, 1);    line-height: 20px;font-size: 14px;box-sizing: border-box;font-weight: 400;overflow: visible;">
+                                            Login
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    {{usernamedata.userprofile.position}}
+                                </p>
+                            </li>
+                        </ui>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </hr>
+
+</div>
+ <div class="More p-5">
+    <h4>
+        More From Medium
+    </h4> 
+    <hr>
+        <p style="font-weight: 500;font-size: 15px;">
+            MORE POST ON SOCIAL BLOG
+        </p>
+        <div class="container">
+            <div class="row">
+                {% for i in data %}
+                <div class="col-sm-4 p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{i.Title}}
+                            </h5><span><b>Blog By {{i.user.username}} </b></span>
+                            <p class="card-text">
+                                <p ><span><b>Like </b></span>{{i.like.count}} || 
+
+          <b>  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                    </svg>  {% get_hit_count for i %}</b>
+                                <a href="/post/{{ i.user }}/{{ i.slug }}">
+                                    Read More
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</div>
+</div>
+
+
+<script>
+    $(window).scroll(function() {
+  if ($(this).scrollTop() > 50) {
+    $('.a').fadeOut();
+  } else {
+    $('.a').fadeIn();
+  }
+});
+</script> 
+<script type="text/javascript">
+    $('#follow').click(function (e) {
+                e.preventDefault();
+                var href=this.href;
+
+                $.ajax({
+                    url:href,
+                    dataType: 'json',
+
+                    success:function(response){
+                        if(response["following"]){
+                            $('#follow').html('<i class="check">✓</i> Follow')
+                        }
+                        else{
+                            $('#follow').html('Follow')
+                        }
+                    }
+                })
+            })
+</script>
+<script type="text/javascript">
+    $('#follow1').click(function (e) {
+
+                e.preventDefault();
+                var href=this.href;
+
+                $.ajax({
+                    url:href,
+                    dataType: 'json',
+
+                    success:function(response){
+                        if(response["following"]){
+                            $('#follow1').html('<i class="check">✓</i> Follow')
+                        }
+                        else{
+                            $('#follow1').html('Follow')
+                        }
+                    }
+                })
+            })
+</script>
+<script type="text/javascript">
+    let likeButton=document.getElementById('likeButton');
+            function updateText(btn,newCount,verb){
+                btn.text(newCount+' '+verb)
+            }
+
+            $(".like_btn").click(function(e){
+                e.preventDefault();
+
+                var this_=$(this);
+                var likeUrl= this_.attr("data-href");
+                var likeCount= parseInt(this_.attr('data-like'));
+                $.ajax({
+                    url:likeUrl,
+                    method:'GET',
+                    data:{},
+                    success:function(data){
+                        e.preventDefault();
+                        console.log(data)
+                        
+                        if(data.liked==false){
+                    //add the like
+                     updateText(this_, data.likescount, "Like")
+                     likeButton.innerHTML="<img src='https://img.icons8.com/dusk/20/000000/facebook-like.png'/> Like :"+ data.likescount;
+                }
+                else{
+                    //remove the one like
+                    updateText(this_, data.likescount, "Like")
+                    likeButton.innerHTML="<img src='https://img.icons8.com/dusk/20/000000/facebook-like.png'/> Like :"+data.likescount;
+                }
+            },error:function(error){
+                console.log(error);
+                console.log('error');
+
+            }
+        })
+            
+            })
+</script>
+<script type="text/javascript">
+    function updateTextsave(btn,verb){
+                btn.text(' '+verb)
+            }
+            $(".save_btn").click(function(e){
+                e.preventDefault();
+                var this_=$(this);
+                var saveUrl= this_.attr("data-hrefs");
+                var saveCount= parseInt(this_.attr('data-save'));
+                $.ajax({
+                    url:saveUrl,
+                    method:'GET',
+                    data:{},
+                    success:function(data){
+                        e.preventDefault();
+                        console.log(data)
+                        if(data.saved==true){
+                        //add the save
+                     updateTextsave(this_,"Unsaved")    
+                }
+                else{
+                    //remove the one save
+                    updateTextsave(this_, "Save")
+                    
+                }
+            },error:function(error){
+                console.log(error);
+                console.log('error');
+            }
+        })
+            
+    })
+</script>
+{% endblock  %}
